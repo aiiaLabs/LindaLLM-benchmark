@@ -1,0 +1,201 @@
+{
+ "benchmark": "LindaBench",
+ "version": "1.0",
+ "generated_at": "2026-10-27",
+ "tasks": {
+  "br": "Tecnologia e Brasil",
+  "knowledge": "Conhecimento aiiaLabs",
+  "identity": "Identidade (Linda)"
+ },
+ "n_questions": {
+  "br": 333,
+  "knowledge": 20,
+  "identity": 20
+ },
+ "categories": [
+  "Brasil",
+  "Ciência e pesquisa no Brasil",
+  "Computação e software",
+  "Empresas brasileiras de tecnologia",
+  "Governo digital, finanças e leis",
+  "Inteligência artificial"
+ ],
+ "mc_prefix": "Resposta: letra",
+ "models": [
+  {
+   "label": "lindav1.2",
+   "name": "Linda 4B v1.2",
+   "org": "aiiaLabs",
+   "params": "4B",
+   "hf": "aiiaLabsDev/lindav1.2",
+   "weights": "private",
+   "tasks": {
+    "br": {
+     "accuracy": 0.8798798798798799,
+     "stderr": 0.017815477030075653,
+     "n": 333
+    },
+    "knowledge": {
+     "accuracy": 0.95,
+     "stderr": 0.04873397172404484,
+     "n": 20
+    },
+    "identity": {
+     "accuracy": 1.0,
+     "stderr": 0.0,
+     "n": 20
+    }
+   }
+  },
+  {
+   "label": "qwen3.5-4b",
+   "name": "Qwen3.5-4B",
+   "org": "Alibaba",
+   "params": "4B",
+   "hf": "Qwen/Qwen3.5-4B",
+   "weights": "open",
+   "tasks": {
+    "br": {
+     "accuracy": 0.6696696696696697,
+     "stderr": 0.025774035588030226,
+     "n": 333
+    },
+    "knowledge": {
+     "accuracy": 0.2,
+     "stderr": 0.0894427190999916,
+     "n": 20
+    },
+    "identity": {
+     "accuracy": 0.0,
+     "stderr": 0.0,
+     "n": 20
+    }
+   }
+  },
+  {
+   "label": "qwen3-4b-2507",
+   "name": "Qwen3-4B-Instruct-2507",
+   "org": "Alibaba",
+   "params": "4B",
+   "hf": "Qwen/Qwen3-4B-Instruct-2507",
+   "weights": "open",
+   "tasks": {
+    "br": {
+     "accuracy": 0.5945945945945946,
+     "stderr": 0.02690500822315319,
+     "n": 333
+    },
+    "knowledge": {
+     "accuracy": 0.2,
+     "stderr": 0.0894427190999916,
+     "n": 20
+    },
+    "identity": {
+     "accuracy": 0.0,
+     "stderr": 0.0,
+     "n": 20
+    }
+   }
+  },
+  {
+   "label": "llama-3.2-3b",
+   "name": "Llama 3.2 3B",
+   "org": "Meta",
+   "params": "3B",
+   "hf": "meta-llama/Llama-3.2-3B-Instruct",
+   "weights": "open",
+   "tasks": {
+    "br": {
+     "accuracy": 0.5555555555555556,
+     "stderr": 0.027230171188659544,
+     "n": 333
+    },
+    "knowledge": {
+     "accuracy": 0.15,
+     "stderr": 0.07984359711335656,
+     "n": 20
+    },
+    "identity": {
+     "accuracy": 0.0,
+     "stderr": 0.0,
+     "n": 20
+    }
+   }
+  },
+  {
+   "label": "gemma-3-4b",
+   "name": "Gemma 3 4B",
+   "org": "Google",
+   "params": "4B",
+   "hf": "google/gemma-3-4b-it",
+   "weights": "open",
+   "tasks": {
+    "br": {
+     "accuracy": 0.5405405405405406,
+     "stderr": 0.027309617517039107,
+     "n": 333
+    },
+    "knowledge": {
+     "accuracy": 0.2,
+     "stderr": 0.0894427190999916,
+     "n": 20
+    },
+    "identity": {
+     "accuracy": 0.0,
+     "stderr": 0.0,
+     "n": 20
+    }
+   }
+  },
+  {
+   "label": "phi-4-mini",
+   "name": "Phi-4-mini",
+   "org": "Microsoft",
+   "params": "3.8B",
+   "hf": "microsoft/Phi-4-mini-instruct",
+   "weights": "open",
+   "tasks": {
+    "br": {
+     "accuracy": 0.4984984984984985,
+     "stderr": 0.027399707671071662,
+     "n": 333
+    },
+    "knowledge": {
+     "accuracy": 0.2,
+     "stderr": 0.0894427190999916,
+     "n": 20
+    },
+    "identity": {
+     "accuracy": 0.0,
+     "stderr": 0.0,
+     "n": 20
+    }
+   }
+  },
+  {
+   "label": "tucano-2b4",
+   "name": "Tucano 2b4 Instruct",
+   "org": "TucanoBR",
+   "params": "2.4B",
+   "hf": "TucanoBR/Tucano-2b4-Instruct",
+   "weights": "open",
+   "tasks": {
+    "br": {
+     "accuracy": 0.24324324324324326,
+     "stderr": 0.02351128844328865,
+     "n": 333
+    },
+    "knowledge": {
+     "accuracy": 0.15,
+     "stderr": 0.07984359711335656,
+     "n": 20
+    },
+    "identity": {
+     "accuracy": 0.0,
+     "stderr": 0.0,
+     "n": 20
+    }
+   }
+  }
+ ]
+}

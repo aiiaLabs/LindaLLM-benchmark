@@ -1,0 +1,217 @@
+# Temas da Linda v1.3: títulos da Wikipédia em português (um por linha; # comenta).
+# fetch_wiki.py segue redirecionamentos e, se o título não existir, usa o 1º resultado da busca.
+
+## Inteligência artificial
+Inteligência artificial
+Aprendizado de máquina
+Aprendizagem profunda
+Rede neural artificial
+Transformer (aprendizado de máquina)
+Modelo de linguagem de grande escala
+Modelo de linguagem
+Processamento de linguagem natural
+Visão computacional
+Aprendizado por reforço
+Aprendizado supervisionado
+Aprendizado não supervisionado
+Inteligência artificial generativa
+Alucinação (inteligência artificial)
+Ética na inteligência artificial
+Viés algorítmico
+Agente inteligente
+ChatGPT
+GPT-4
+OpenAI
+Google DeepMind
+Anthropic
+Llama (modelo de linguagem)
+Hugging Face
+Reconhecimento de fala
+Reconhecimento ótico de caracteres
+Sistema de recomendação
+Ciência de dados
+Big data
+Mineração de dados
+Teste de Turing
+Alan Turing
+Inteligência artificial geral
+Unidade de processamento gráfico
+Nvidia
+Engenharia de prompt
+Geração aumentada por recuperação
+Aprendizado por transferência
+Chatbot
+Deepfake
+Regulamentação da inteligência artificial
+
+## Computação e software
+Computação em nuvem
+Software livre
+Código aberto
+Linux
+Python
+Lua (linguagem de programação)
+Elixir (linguagem de programação)
+JavaScript
+Banco de dados
+SQL
+API
+Docker (software)
+Kubernetes
+Segurança da informação
+Criptografia
+Ransomware
+Phishing
+Engenharia social (segurança)
+Internet das coisas
+Computação quântica
+Blockchain
+Software como serviço
+DevOps
+Git
+
+## Tecnologia brasileira: empresas
+Nubank
+Mercado Livre
+iFood
+Magazine Luiza
+Totvs
+Stone (empresa)
+PagSeguro
+Embraer
+Embrapa
+Positivo Tecnologia
+Itautec
+Cobra Tecnologia
+VTEX
+Hotmart
+QuintoAndar
+Loggi
+99 (empresa)
+Movile
+Creditas
+CloudWalk
+EBANX
+Olist
+Natura &Co
+Locaweb
+Serpro
+Dataprev
+Ceitec
+Telebras
+Petrobras
+Vale S.A.
+Itaú Unibanco
+Banco do Brasil
+Caixa Econômica Federal
+Bradesco
+Banco Inter
+PicPay
+Vivo (operadora)
+Claro Brasil
+TIM Brasil
+Oi (empresa)
+Globo (empresa)
+Startup
+Unicórnio (finanças)
+
+## Tecnologia brasileira: governo, finanças e leis
+Pix (sistema de pagamentos)
+Drex
+Open Finance Brasil
+Banco Central do Brasil
+Lei Geral de Proteção de Dados Pessoais
+Autoridade Nacional de Proteção de Dados
+Marco Civil da Internet
+Marco Legal das Startups
+Lei de Informática
+Política Nacional de Informática
+Estratégia Brasileira de Inteligência Artificial
+Projeto de Lei 2338/2023
+Gov.br
+Urna eletrônica
+Tribunal Superior Eleitoral
+Nota fiscal eletrônica
+Sistema Público de Escrituração Digital
+ESocial
+Carteira de Trabalho Digital
+Cadastro de Pessoas Físicas
+Receita Federal do Brasil
+Anatel
+5G no Brasil
+Internet no Brasil
+Comitê Gestor da Internet no Brasil
+Registro.br
+Rede Nacional de Ensino e Pesquisa
+Sistema Brasileiro de Televisão Digital
+Ginga (middleware)
+Satélite Geoestacionário de Defesa e Comunicações Estratégicas
+Fake news no Brasil
+Consolidação das Leis do Trabalho
+
+## Ciência e pesquisa no Brasil
+Instituto Nacional de Pesquisas Espaciais
+Agência Espacial Brasileira
+Amazonia-1
+CBERS
+Centro de Lançamento de Alcântara
+Sirius (acelerador de partículas)
+Centro Nacional de Pesquisa em Energia e Materiais
+Laboratório Nacional de Computação Científica
+Instituto Tecnológico de Aeronáutica
+Universidade de São Paulo
+Universidade Estadual de Campinas
+Universidade Federal do Rio de Janeiro
+Instituto de Matemática Pura e Aplicada
+Fundação Oswaldo Cruz
+Instituto Butantan
+Conselho Nacional de Desenvolvimento Científico e Tecnológico
+Coordenação de Aperfeiçoamento de Pessoal de Nível Superior
+Fundação de Amparo à Pesquisa do Estado de São Paulo
+Financiadora de Estudos e Projetos
+Porto Digital
+Campus Party
+Santos Dumont
+César Lattes
+Plataforma Lattes
+Etanol no Brasil
+Programa Nacional do Álcool
+Pré-sal
+Usina Hidrelétrica de Itaipu
+Energia solar no Brasil
+Energia eólica no Brasil
+Programa Nuclear Brasileiro
+Artur Avila
+
+## Brasil: geral
+Brasil
+História do Brasil
+Geografia do Brasil
+Economia do Brasil
+Constituição brasileira de 1988
+Independência do Brasil
+Proclamação da República do Brasil
+Regiões do Brasil
+Unidades federativas do Brasil
+Amazônia
+Cerrado
+Mata Atlântica
+Pantanal
+Língua portuguesa no Brasil
+Cultura do Brasil
+Sistema Único de Saúde
+Educação no Brasil
+Real (moeda)
+Plano Real
+Mercosul
+BRICS
+São Paulo
+Rio de Janeiro
+Brasília
+Belo Horizonte
+Recife
+Florianópolis
+Manaus
+Salvador
+Porto Alegre
+Curitiba

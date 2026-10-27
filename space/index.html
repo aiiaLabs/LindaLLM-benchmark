@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LindaBench</title>
+<link rel="icon" href="aiialabs-icon.png">
+<style>
+  :root {
+    --bg: #fafafa; --card: #ffffff; --ink: #0f172a; --muted: #64748b; --line: #e2e8f0;
+    --linda: #7c3aed; --linda-soft: #ede9fe; --bar: #94a3b8; --ok: #16a34a; --bad: #dc2626;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0b0f17; --card: #111827; --ink: #e5e7eb; --muted: #94a3b8; --line: #1f2937;
+            --linda: #a78bfa; --linda-soft: #2e1065; --bar: #475569; --ok: #4ade80; --bad: #f87171; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; }
+  main { min-width: 0; max-width: 1040px; margin: 0 auto; padding: 32px 16px 64px; }
+  .brand { display: inline-block; margin-bottom: 18px; }
+  .brand img { display: block; height: auto; max-width: 200px; }
+  h1 { font-size: 30px; margin: 0 0 4px; letter-spacing: -0.02em; }
+  h1 span { color: var(--linda); }
+  h2 { font-size: 18px; margin: 0 0 12px; }
+  :focus-visible { outline: 3px solid var(--linda); outline-offset: 3px; }
+  .lead { color: var(--muted); max-width: 760px; margin: 0 0 20px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .links a { border: 1px solid var(--line); background: var(--card); color: var(--ink); text-decoration: none;
+             padding: 6px 12px; border-radius: 999px; font-size: 13px; }
+  .links a:hover { border-color: var(--linda); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-bottom: 20px; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+  .tabs button { border: 1px solid var(--line); background: transparent; color: var(--muted); padding: 6px 12px;
+                 border-radius: 8px; cursor: pointer; font: inherit; font-size: 13px; }
+  .tabs button.on { background: var(--linda); border-color: var(--linda); color: #fff; }
+  .row { display: grid; grid-template-columns: 28px minmax(0, 220px) minmax(0, 1fr) 64px; gap: 10px; align-items: center;
+         padding: 7px 0; border-top: 1px solid var(--line); }
+  .row:first-child { border-top: 0; }
+  .rank { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+  .name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .name small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+  .track { position: relative; height: 18px; background: var(--line); border-radius: 5px; }
+  .fill { position: absolute; inset: 0 auto 0 0; background: var(--bar); border-radius: 5px; }
+  .ci { position: absolute; top: 8px; height: 2px; background: var(--ink); opacity: .55; }
+  .chance { position: absolute; top: -3px; bottom: -3px; width: 0; border-left: 1px dashed var(--muted); }
+  .val { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .linda .fill { background: var(--linda); }
+  .linda .name { color: var(--linda); }
+  .note { color: var(--muted); font-size: 13px; margin: 10px 0 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { padding: 6px 8px; text-align: center; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { color: var(--muted); font-weight: 500; vertical-align: bottom; }
+  .heat { overflow-x: auto; max-width: 100%; }
+  .card { min-width: 0; overflow: hidden; }
+  .heat td { font-variant-numeric: tabular-nums; border-radius: 4px; }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .controls input, .controls select { font: inherit; font-size: 14px; padding: 7px 10px; border-radius: 8px;
+    border: 1px solid var(--line); background: var(--bg); color: var(--ink); min-width: 0; }
+  .controls input { flex: 1 1 220px; }
+  .q { border-top: 1px solid var(--line); padding: 12px 0; }
+  .q .meta { font-size: 12px; color: var(--muted); }
+  .q .meta a { color: var(--muted); }
+  .q ol { margin: 6px 0; padding-left: 22px; }
+  .q li.right { color: var(--ok); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  .chip { font-size: 11px; padding: 2px 7px; border-radius: 999px; border: 1px solid var(--line); }
+  .chip.ok { color: var(--ok); border-color: var(--ok); }
+  .chip.bad { color: var(--bad); border-color: var(--bad); }
+  .empty { color: var(--muted); padding: 24px 0; text-align: center; }
+  details summary { cursor: pointer; font-weight: 600; }
+  details p, details li { color: var(--muted); }
+  @media (max-width: 560px) {
+    .row { grid-template-columns: 22px minmax(0, 1fr) 54px; }
+    .row .track { grid-column: 2 / 4; grid-row: 2; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <a href="https://aiialabs.com.br" class="brand"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="aiialabs-dark.png">
+    <img src="aiialabs-light.png" alt="aiiaLabs" width="200">
+  </picture></a>
+  <h1>Linda<span>Bench</span></h1>
+  <p class="lead">Modelos de 2 a 4B em português, nas seis categorias do LindaBench.
+    Todos os rankings abaixo usam as mesmas questões incluídas no repositório.</p>
+  <div class="links">
+    <a href="https://github.com/aiiaLabs/LindaLLM-benchmark">GitHub · código e notebook</a>
+    <a href="https://github.com/aiiaLabs/LindaLLM-benchmark/tree/main/data">Dados · questões e resultados</a>
+    <a href="https://colab.research.google.com/github/aiiaLabs/LindaLLM-benchmark/blob/main/lindabench.ipynb">Recalcular no Colab</a>
+  </div>
+
+  <section class="card">
+    <div class="tabs" id="tabs"></div>
+    <div id="board"><div class="empty">Carregando resultados…</div></div>
+    <p class="note" id="boardnote"></p>
+  </section>
+
+  <section class="card">
+    <h2>Tecnologia e Brasil por categoria</h2>
+    <div class="heat" id="heat"></div>
+  </section>
+
+  <section class="card">
+    <h2>Explorar questões</h2>
+    <div class="controls">
+      <label for="search">Buscar questões</label>
+      <input id="search" type="search" placeholder="Buscar (ex.: Pix, LGPD, Embraer)">
+      <label for="cat">Categoria</label>
+      <select id="cat"><option value="">Todas as categorias</option></select>
+      <label for="filter">Resultado</label>
+      <select id="filter"><option value="">Todas</option><option value="hard">Quase ninguém acertou</option>
+        <option value="linda">Só a Linda acertou</option><option value="others">A Linda errou e algum outro acertou</option></select>
+    </div>
+    <div id="questions"></div>
+    <p class="note" id="qnote"></p>
+  </section>
+
+  <section class="card">
+    <details>
+      <summary>Como funciona</summary>
+      <ul>
+        <li>São 333 questões de múltipla escolha em seis categorias, mais vinte de conhecimento e vinte de identidade.</li>
+        <li>Cada questão tem 4 alternativas; responder ao acaso dá 25%. Os intervalos são IC 95% por bootstrap.</li>
+        <li>O notebook e os gráficos usam os mesmos dados locais de <code>data/</code>. Nenhum acesso ao Hugging Face é necessário.</li>
+      </ul>
+    </details>
+  </section>
+</main>
+<script>
+const BASE = "../data/";
+const TASKS = [["br", "Tecnologia e Brasil"], ["knowledge", "Conhecimento aiiaLabs"], ["identity", "Identidade"]];
+const $ = (id) => document.getElementById(id);
+const pct = (x) => (100 * x).toFixed(1) + "%";
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const isLinda = (m) => m.name.toLowerCase().startsWith("linda");
+let S, R = {}, Q = [], task = "br";
+
+function bootstrap(passes, n = 2000) {
+  let seed = 1;
+  const rand = () => ((seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648);
+  const means = [];
+  for (let b = 0; b < n; b++) {
+    let s = 0;
+    for (let i = 0; i < passes.length; i++) s += passes[Math.floor(rand() * passes.length)];
+    means.push(s / passes.length);
+  }
+  means.sort((a, b) => a - b);
+  return [means[Math.floor(0.025 * n)], means[Math.floor(0.975 * n)]];
+}
+
+function board() {
+  const rows = S.models.map((m) => {
+    const passes = R[m.label].tasks[task].questions.map((q) => (q.pass ? 1 : 0));
+    const acc = passes.reduce((a, b) => a + b, 0) / passes.length;
+    return { m, acc, ci: bootstrap(passes), n: passes.length };
+  }).sort((a, b) => b.acc - a.acc);
+  $("board").innerHTML = rows.map((r, i) => `
+    <div class="row ${isLinda(r.m) ? "linda" : ""}">
+      <div class="rank">${i + 1}</div>
+      <div class="name">${r.m.weights === "open" ? `<a href="https://huggingface.co/${esc(r.m.hf)}" style="color:inherit;text-decoration:none">${esc(r.m.name)}</a>` : esc(r.m.name)}
+        <small>${esc(r.m.org)} · ${esc(r.m.params)}${r.m.weights === "private" ? " · proprietário" : ""}</small></div>
+      <div class="track" title="IC 95%: ${pct(r.ci[0])} – ${pct(r.ci[1])}">
+        <div class="fill" style="width:${100 * r.acc}%"></div>
+        <div class="ci" style="left:${100 * r.ci[0]}%;width:${100 * (r.ci[1] - r.ci[0])}%"></div>
+        ${task === "br" ? '<div class="chance" style="left:25%" title="acaso (25%)"></div>' : ""}
+      </div>
+      <div class="val">${pct(r.acc)}</div>
+    </div>`).join("");
+  const n = rows[0] ? rows[0].n : 0;
+  $("boardnote").textContent = task === "br"
+    ? `${n} questões · linha tracejada = acaso (25%) · IC 95% por bootstrap · versão ${S.generated_at}`
+    : `${n} questões · versão ${S.generated_at}`;
+}
+
+function heat() {
+  const cats = S.categories;
+  const cat = Object.fromEntries(Q.map((q) => [q.id, q.category]));
+  const models = [...S.models].sort((a, b) => b.tasks.br.accuracy - a.tasks.br.accuracy);
+  const cell = (m, c) => {
+    const qs = R[m.label].tasks.br.questions.filter((q) => cat[q.id] === c);
+    return qs.length ? qs.filter((q) => q.pass).length / qs.length : null;
+  };
+  const color = (v) => `rgba(124, 58, 237, ${0.08 + 0.85 * v})`;
+  $("heat").innerHTML = `<table><thead><tr><th>Categoria</th>${models.map((m) => `<th>${esc(m.name)}</th>`).join("")}</tr></thead><tbody>${
+    cats.map((c) => `<tr><td>${esc(c)} <span style="color:var(--muted)">(${Q.filter((q) => q.category === c).length})</span></td>${
+      models.map((m) => { const v = cell(m, c); return v === null ? "<td>–</td>" :
+        `<td style="background:${color(v)};color:${v > 0.6 ? "#fff" : "inherit"}">${Math.round(100 * v)}</td>`; }).join("")}</tr>`).join("")
+  }</tbody></table>`;
+}
+
+function questions() {
+  const term = $("search").value.trim().toLowerCase();
+  const c = $("cat").value, f = $("filter").value;
+  const passOf = (label, id) => { const r = R[label]; return r && (r.tasks.br.questions.find((q) => q.id === id) || {}).pass; };
+  const linda = S.models.filter(isLinda).map((m) => m.label);
+  const others = S.models.filter((m) => !isLinda(m)).map((m) => m.label);
+  const list = Q.filter((q) => (!c || q.category === c) &&
+      (!term || (q.question + " " + q.title + " " + q.options.join(" ")).toLowerCase().includes(term)) &&
+      (!f || (f === "hard" && S.models.filter((m) => passOf(m.label, q.id)).length <= 1) ||
+             (f === "linda" && linda.some((l) => passOf(l, q.id)) && !others.some((o) => passOf(o, q.id))) ||
+             (f === "others" && !linda.some((l) => passOf(l, q.id)) && others.some((o) => passOf(o, q.id)))));
+  $("questions").innerHTML = list.slice(0, 40).map((q) => `
+    <div class="q">
+      <div class="meta">${esc(q.category)}</div>
+      <div><strong>${esc(q.question)}</strong></div>
+      <ol type="A">${q.options.map((o, i) => `<li class="${"ABCD"[i] === q.answer ? "right" : ""}">${esc(o)}</li>`).join("")}</ol>
+      <div class="chips">${S.models.map((m) => `<span class="chip ${passOf(m.label, q.id) ? "ok" : "bad"}">${esc(m.name)}</span>`).join("")}</div>
+    </div>`).join("") || '<div class="empty">Nenhuma questão encontrada.</div>';
+  $("qnote").textContent = list.length > 40 ? `Mostrando 40 de ${list.length} questões. Refine a busca.` : `${list.length} questões.`;
+}
+
+async function main() {
+  try {
+    const get = async (p) => { const r = await fetch(BASE + p); if (!r.ok) throw new Error(r.status); return r; };
+    S = await (await get("summary.json")).json();
+    Q = (await (await get("questions/tecnologia-brasil.jsonl")).text()).split("\n").filter(Boolean).map((l) => JSON.parse(l));
+    await Promise.all(S.models.map(async (m) => { R[m.label] = await (await get(`results/${m.label}.json`)).json(); }));
+  } catch (e) {
+    $("board").innerHTML = '<div class="empty">Não foi possível carregar os dados. Abra a raiz do projeto com um servidor HTTP e tente novamente.</div>';
+    return;
+  }
+  $("tabs").innerHTML = TASKS.map(([k, v]) => `<button data-k="${k}" class="${k === task ? "on" : ""}" aria-pressed="${k === task}">${v}</button>`).join("");
+  $("tabs").onclick = (e) => { const k = e.target.dataset.k; if (!k) return; task = k;
+    [...$("tabs").children].forEach((b) => { b.classList.toggle("on", b.dataset.k === k); b.setAttribute("aria-pressed", String(b.dataset.k === k)); }); board(); };
+  $("cat").innerHTML += S.categories.map((c) => `<option>${esc(c)}</option>`).join("");
+  ["search", "cat", "filter"].forEach((id) => $(id).addEventListener("input", questions));
+  board(); heat(); questions();
+}
+main();
+</script>
+</body>
+</html>
